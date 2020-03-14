@@ -6,8 +6,8 @@ import (
 
 // Message struct
 type Message struct {
-	ID   uuid.UUID
-	Body string
+	ID   uuid.UUID `json:"id"`
+	Body string    `json:"body"`
 }
 
 // NewMessage is a constructor for Message
