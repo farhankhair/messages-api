@@ -13,6 +13,6 @@ func TestNewMessage(t *testing.T) {
 		message := *NewMessage(body)
 
 		assert.NotNil(t, message.GetID())
-		assert.EqualValues(t, body, message.Body)
+		assert.EqualValues(t, body, message.GetBody())
 	})
 }
