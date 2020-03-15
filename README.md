@@ -22,4 +22,4 @@ Simple API that use Go, MQTT for a simple messaging API
 
     When server receiving GET request for sending message, the publisher will publish the body of the message and the subscriber will receive the message.
 
-######Created By : Farhan Ramadhan Syah Khair
+###### Created By : Farhan Ramadhan Syah Khair
