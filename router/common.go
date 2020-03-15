@@ -5,6 +5,7 @@ import (
 	"net/http"
 )
 
+// ErrorResponse :nodoc:
 type ErrorResponse struct {
 	Status  int
 	Message string
@@ -35,8 +36,23 @@ func handleError(w http.ResponseWriter, err ErrorResponse) {
 	json.NewEncoder(w).Encode(body)
 }
 
+// NewErrorNoMessage :nodoc:
 func NewErrorNoMessage(status int) ErrorResponse {
 	return ErrorResponse{
 		Status: status,
 	}
+}
+
+type stringResponse struct {
+	Data string `json:"data"`
+}
+
+func welcome(w http.ResponseWriter, r *http.Request) {
+	hello := "Hello, World!"
+
+	data := stringResponse{
+		Data: hello,
+	}
+
+	handleJSONResponse(w, data)
 }

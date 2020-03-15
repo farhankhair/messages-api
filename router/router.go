@@ -8,23 +8,27 @@ import (
 	"github.com/farhanramadhan/messages-api/service"
 )
 
+// API :nodoc:
 type API struct {
 	Service *service.MessageService
 	Router  *mux.Router
 }
 
+// NewAPI :nodoc:
 func NewAPI() *API {
 	api := API{
 		Service: service.NewMessageService(),
 		Router:  Router(),
 	}
 
+	// Route for sending message and get all messages
 	api.Router.HandleFunc("/message/{message}", api.insertMessage).Methods("GET")
 	api.Router.HandleFunc("/message", api.getAllMessages).Methods("GET")
 
 	return &api
 }
 
+// Router :nodoc:
 func Router() *mux.Router {
 	r := mux.NewRouter()
 
@@ -83,20 +87,6 @@ func (a *API) getAllMessages(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data.Data.Length = len(messages)
-
-	handleJSONResponse(w, data)
-}
-
-type stringResponse struct {
-	Data string `json:"data"`
-}
-
-func welcome(w http.ResponseWriter, r *http.Request) {
-	hello := "Hello, World!"
-
-	data := stringResponse{
-		Data: hello,
-	}
 
 	handleJSONResponse(w, data)
 }
