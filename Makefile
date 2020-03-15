@@ -1,5 +1,5 @@
-run:
-	go run main.go
+run: test
+	clear && go run main.go
 
 test:
 	go test -v ./...
