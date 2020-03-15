@@ -7,12 +7,10 @@ import (
 )
 
 func TestNewMessage(t *testing.T) {
-	t.Run("Ensure ID and Body attached when create message", func(t *testing.T) {
-		body := "Hello, World!"
+	body := "Hello, World!"
 
-		message := *NewMessage(body)
+	message := *NewMessage(body)
 
-		assert.NotNil(t, message.GetID())
-		assert.EqualValues(t, body, message.GetBody())
-	})
+	assert.NotNil(t, message.GetID())
+	assert.EqualValues(t, body, message.GetBody())
 }
