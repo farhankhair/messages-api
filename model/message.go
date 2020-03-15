@@ -19,12 +19,12 @@ func NewMessage(body string) *Message {
 	return message
 }
 
-// GetID :nodoc:
+// GetID is a getter for message ID
 func (m *Message) GetID() uuid.UUID {
 	return m.ID
 }
 
-// GetBody :nodoc:
+// GetBody is a getter for message body
 func (m *Message) GetBody() string {
 	return m.Body
 }
