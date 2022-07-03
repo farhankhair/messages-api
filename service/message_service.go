@@ -1,4 +1,4 @@
-//go:generate mockgen -destination=./mock_service/mock_service.go -source=service.go
+//go:generate mockgen -destination=./mock_service/mock_message_service.go -source=message_service.go
 
 package service
 
