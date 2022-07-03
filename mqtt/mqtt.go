@@ -7,6 +7,7 @@ import (
 	"os"
 
 	mqtt "github.com/eclipse/paho.mqtt.golang"
+	"github.com/farhanramadhan/messages-api/constant"
 )
 
 // Publisher is to create mqtt client as a publisher
@@ -23,7 +24,7 @@ func Publisher() mqtt.Client {
 
 	topic := uri.Path[1:len(uri.Path)]
 	if topic == "" {
-		topic = "message-api-realtime"
+		topic = constant.InsertMessageTopicMQTT
 	}
 
 	client := Connect("pub", uri)
@@ -69,7 +70,7 @@ func LocalAddressMQTT() string {
 	username := "mqtt_user_name"
 	password := "mqtt_password"
 	address := "localhost:1883"
-	topic := "message-api-realtime"
+	topic := constant.InsertMessageTopicMQTT
 	cloudMQTT := fmt.Sprintf("mqtt://%s:%s@%s/%s", username, password, address, topic)
 	return cloudMQTT
 }

@@ -3,6 +3,7 @@
 package service
 
 import (
+	"github.com/farhanramadhan/messages-api/constant"
 	"github.com/farhanramadhan/messages-api/model"
 	"github.com/farhanramadhan/messages-api/repository"
 
@@ -48,7 +49,7 @@ func (ms *messageService) InsertMessage(body string) error {
 	}
 
 	go func() {
-		ms.publisher.Publish("message-api-realtime", 0, false, body)
+		ms.publisher.Publish(constant.InsertMessageTopicMQTT, 0, false, body)
 	}()
 
 	return nil
