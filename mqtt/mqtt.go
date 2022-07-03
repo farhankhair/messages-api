@@ -46,7 +46,7 @@ func Connect(clientID string, uri *url.URL) mqtt.Client {
 func Listen(uri *url.URL, topic string) {
 	client := Connect("sub", uri)
 	client.Subscribe(topic, 0, func(client mqtt.Client, msg mqtt.Message) {
-		log.Printf("[%s] : %s\n", msg.Topic(), string(msg.Payload()))
+		log.Printf("From Another Go Routine [%s] : %s\n", msg.Topic(), string(msg.Payload()))
 	})
 }
 

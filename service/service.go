@@ -4,9 +4,7 @@ package service
 
 import (
 	"github.com/farhanramadhan/messages-api/model"
-	"github.com/farhanramadhan/messages-api/mqtt"
 	"github.com/farhanramadhan/messages-api/repository"
-	"github.com/farhanramadhan/messages-api/repository/localdb"
 
 	mqtts "github.com/eclipse/paho.mqtt.golang"
 )
@@ -25,8 +23,8 @@ type messageService struct {
 // NewMessageService is a constructor
 func NewMessageService(repo repository.MessageRepository, publisher mqtts.Client) *messageService {
 	service := &messageService{
-		repo:      localdb.NewLocalDBRepo(),
-		publisher: mqtt.Publisher(),
+		repo:      repo,
+		publisher: publisher,
 	}
 
 	return service
