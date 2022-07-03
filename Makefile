@@ -3,3 +3,6 @@ run: test
 
 test:
 	go test -v ./...
+
+mockgen:
+	@go generate ./...

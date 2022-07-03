@@ -8,7 +8,9 @@ import (
 	"time"
 
 	"github.com/farhanramadhan/messages-api/mqtt"
+	"github.com/farhanramadhan/messages-api/repository/localdb"
 	"github.com/farhanramadhan/messages-api/router"
+	"github.com/farhanramadhan/messages-api/service"
 )
 
 func main() {
@@ -21,7 +23,16 @@ func startServer() {
 		port = "8080"
 	}
 
-	api := router.NewAPI()
+	// initialize dependency
+	publisher := mqtt.Publisher()
+
+	repo := localdb.NewLocalDBRepo()
+
+	service := service.NewMessageService(repo, publisher)
+
+	muxRouter := router.Router()
+
+	api := router.NewAPI(service, muxRouter)
 
 	server := &http.Server{
 		Handler:      api.Router,
@@ -30,10 +41,12 @@ func startServer() {
 		ReadTimeout:  15 * time.Second,
 	}
 
+	// start mqtt subscriber go routine
 	go startMQTTSubscriber()
 
 	log.Println("Starting server on port ", port)
 
+	// start server
 	log.Fatal(server.ListenAndServe())
 }
 

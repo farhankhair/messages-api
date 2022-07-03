@@ -10,15 +10,15 @@ import (
 
 // API :nodoc:
 type API struct {
-	Service *service.MessageService
+	Service service.MessageService
 	Router  *mux.Router
 }
 
 // NewAPI :nodoc:
-func NewAPI() *API {
+func NewAPI(service service.MessageService, router *mux.Router) *API {
 	api := API{
-		Service: service.NewMessageService(),
-		Router:  Router(),
+		Service: service,
+		Router:  router,
 	}
 
 	// Route for sending message and get all messages
